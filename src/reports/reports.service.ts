@@ -11,8 +11,8 @@ export class ReportsService {
     @InjectRepository(Report)
     private readonly reportsRepository: Repository<Report>,
   ) {}
-  create(price: number) {
-    const report = this.reportsRepository.create({ price });
+  create(body: CreateReportDto) {
+    const report = this.reportsRepository.create(body);
 
     return this.reportsRepository.save(report);
   }

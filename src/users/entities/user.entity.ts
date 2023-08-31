@@ -4,9 +4,11 @@ import {
   AfterUpdate,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import { Report } from 'src/reports/entities/report.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -14,6 +16,9 @@ export class User {
 
   @Column()
   email: string;
+
+  @OneToMany(() => Report, (report) => report?.user)
+  reports: Report[];
 
   @Column()
   @Exclude()
